@@ -10,6 +10,10 @@ public class Item {
 		this.setQuality(quality);
 	}
     
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/* Generated getter and setter code */
     public String getName() {
 		return name;
@@ -29,4 +33,5 @@ public class Item {
 	public void setQuality(int quality) {
 		this.quality = quality;
 	}
+	
 }

@@ -32,7 +32,7 @@ public class GildedRose {
 		return BACKSTAGE_PASSES.equals(item.getName());
 	}
 
-	private void adjustQualityForItem(Item item) {
+	void adjustQualityForItem(Item item) {
 		if ((!isAgedBrie(item)) && !isBackstage(item)) {
 			if (item.getQuality() > 0) {
 				if (!SULFURAS.equals(item.getName())) {
@@ -84,7 +84,7 @@ public class GildedRose {
 		item.setQuality(item.getQuality() - 1);
 	}
 
-	private void incrementQuality(Item item) {
+	void incrementQuality(Item item) {
 		if (item.getQuality() < 50) {
 			item.setQuality(item.getQuality() + 1);
 		}
