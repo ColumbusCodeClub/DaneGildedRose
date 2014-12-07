@@ -27,7 +27,7 @@ public class GildedRose {
 	private boolean isAgedBrie(Item item) {
 		return AGED_BRIE.equals(item.getName());
 	}
-	
+
 	private boolean isBackstage(Item item) {
 		return BACKSTAGE_PASSES.equals(item.getName());
 	}
@@ -39,9 +39,9 @@ public class GildedRose {
 					decrementQuality(item);
 				}
 			}
-		} else  if(isBackstage(item)) {
+		} else if (isBackstage(item)) {
 			updateQualityForBackStagePass(item);
-			
+
 		} else {
 			incrementQuality(item);
 		}
@@ -69,14 +69,12 @@ public class GildedRose {
 
 	private void updateQualityForBackStagePass(Item item) {
 		incrementQuality(item);
-		if (isBackstage(item)) {
-			if (item.getSellIn() < 11) {
-				incrementQuality(item);
-			}
+		if (item.getSellIn() < 11) {
+			incrementQuality(item);
+		}
 
-			if (item.getSellIn() < 6) {
-				incrementQuality(item);
-			}
+		if (item.getSellIn() < 6) {
+			incrementQuality(item);
 		}
 	}
 
