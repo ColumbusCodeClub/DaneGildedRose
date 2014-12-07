@@ -5,6 +5,10 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 
+	private static final int MAX_QUALITY_INCREASE = 50;
+
+	private static final String AGED_BRIE = "Aged Brie";
+
 	private static final int MAX_QUALITY = 50;
 
 	private GildedRose subject;
@@ -51,6 +55,20 @@ public class GildedRoseTest {
 		subject.adjustQualityForItem(item);
 
 		assertEquals(0, item.quality);
+	}
+	
+	@Test
+	public void qualityForBrieIncreasesUntilFifty() {
+		Item item = new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build();
+		checkQualityTimes(item, MAX_QUALITY_INCREASE);
+		
+		assertEquals(50, item.quality);
+	}
+
+	private void checkQualityTimes(Item item, int timesToCheck) {
+		for(int qualityChecks = 1; qualityChecks <=50; qualityChecks++) {
+			subject.adjustQualityForItem(item);
+		}
 	}
 	
 	private Item createGenericItemWithQuality(int quality) {
