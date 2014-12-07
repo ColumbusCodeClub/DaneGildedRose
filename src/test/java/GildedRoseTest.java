@@ -13,20 +13,20 @@ public class GildedRoseTest {
 
 	private static final int MAX_QUALITY = 50;
 
-	private GildedRose subject;
+	private GildedRose underTest;
 
 	private String genericItemName = "name";
 	
 	@Before
 	public void setup() {
-		subject = new GildedRose();
+		underTest = new GildedRose();
 	}
 
 	@Test
 	public void ifQualityBelowFiftyThenAddQualityofOne() {
 		Item item = createGenericItemWithQuality(1);
 
-		subject.incrementQuality(item);
+		underTest.incrementQuality(item);
 
 		assertEquals(2, item.quality);
 	}
@@ -35,7 +35,7 @@ public class GildedRoseTest {
 	public void ifQualityIsFiftyThenQualityDoesNotIncrement() {
 		Item item = createGenericItemWithQuality(MAX_QUALITY);
 
-		subject.incrementQuality(item);
+		underTest.incrementQuality(item);
 
 		assertEquals(MAX_QUALITY, item.quality);
 	}
@@ -44,7 +44,7 @@ public class GildedRoseTest {
 	public void updateQualityForGeneralItem() {
 		Item item = createGenericItemWithQuality(MAX_QUALITY);
 
-		subject.adjustQualityForItem(item);
+		underTest.adjustQualityForItem(item);
 
 		assertEquals(49, item.quality);
 	}
@@ -54,7 +54,7 @@ public class GildedRoseTest {
 		Item item = new ItemBuilder().setName(genericItemName).setQuality(0)
 				.setSellIn(1).build();
 
-		subject.adjustQualityForItem(item);
+		underTest.adjustQualityForItem(item);
 
 		assertEquals(0, item.quality);
 	}
@@ -114,10 +114,23 @@ public class GildedRoseTest {
 		
 		assertEquals(0, item.quality);
 	}
+	
+	@Test
+	public void shouldTakeListOfItemsAndCallAdjustQualityForAll() {
+		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(10).setSellIn(-1).build();
+		Item item2 = new ItemBuilder().setName(genericItemName).setQuality(3).setSellIn(-1).build();
+		
+		underTest.addItem(item);
+		underTest.addItem(item2);
+		underTest.updateQuality();
+
+		assertEquals(0, item.quality);
+		assertEquals(1, item2.quality);
+	}
 
 	private void checkQualityTimes(Item item, int timesToCheck) {
 		for(int qualityChecks = 1; qualityChecks <=timesToCheck; qualityChecks++) {
-			subject.adjustQualityForItem(item);
+			underTest.adjustQualityForItem(item);
 		}
 	}
 	
