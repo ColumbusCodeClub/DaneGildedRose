@@ -84,11 +84,27 @@ public class GildedRoseTest {
 	}
 	
 	@Test
-	public void qualityForBackStagePassesIncreaseByThreeIfUnderSix() {
+	public void qualityForBackStagePassesIncreaseByThreeIfSellInUnderSix() {
 		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(1).build();
 		checkQualityTimes(item, 1);
 		
 		assertEquals(4, item.quality);
+	}
+	
+	@Test
+	public void qualityForBackStagePassesIncreaseByTwoIfSellinOver11() {
+		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(12).build();
+		checkQualityTimes(item, 1);
+		
+		assertEquals(2, item.quality);
+	}
+	
+	@Test
+	public void  sellInUnderZeroForGeneralItemReducesQuality() {
+		Item item = new ItemBuilder().setName(genericItemName).setQuality(2).setSellIn(-1).build();
+		checkQualityTimes(item, 1);
+		
+		assertEquals(0, item.quality);
 	}
 
 	private void checkQualityTimes(Item item, int timesToCheck) {
