@@ -33,9 +33,9 @@ public class GildedRose {
 	}
 
 	void adjustQualityForItem(Item item) {
-		if ((!isAgedBrie(item)) && !isBackstage(item)) {
-			if (item.getQuality() > 0) {
-				if (!SULFURAS.equals(item.getName())) {
+		if (qualityChanges(item)) {
+			if (qualityAboveZero(item)) {
+				if (notSulfuras(item)) {
 					decrementQuality(item);
 				}
 			}
@@ -46,15 +46,15 @@ public class GildedRose {
 			incrementQuality(item);
 		}
 
-		if (!SULFURAS.equals(item.getName())) {
+		if (notSulfuras(item)) {
 			item.setSellIn(item.getSellIn() - 1);
 		}
 
 		if (item.getSellIn() < 0) {
 			if (!isAgedBrie(item)) {
 				if (!isBackstage(item)) {
-					if (item.getQuality() > 0) {
-						if (!SULFURAS.equals(item.getName())) {
+					if (qualityAboveZero(item)) {
+						if (notSulfuras(item)) {
 							decrementQuality(item);
 						}
 					}
@@ -65,6 +65,18 @@ public class GildedRose {
 				incrementQuality(item);
 			}
 		}
+	}
+
+	private boolean notSulfuras(Item item) {
+		return !SULFURAS.equals(item.getName());
+	}
+
+	private boolean qualityAboveZero(Item item) {
+		return item.getQuality() > 0;
+	}
+
+	private boolean qualityChanges(Item item) {
+		return (!isAgedBrie(item)) && !isBackstage(item);
 	}
 
 	private void updateQualityForBackStagePass(Item item) {
