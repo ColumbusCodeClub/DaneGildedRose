@@ -108,6 +108,22 @@ public class GildedRoseTest {
 	}
 
 	@Test
+	public void  sellInUnderZeroForGeneralItemWithQualityAlreadyZero() {
+		Item item = new ItemBuilder().setName(genericItemName).setQuality(0).setSellIn(-1).build();
+		checkQualityTimes(item, 1);
+		
+		assertEquals(0, item.quality);
+	}
+	
+	@Test
+	public void  sellInUnderZeroForSulfarsDoesNotDecrementQuality() {
+		Item item = new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(-1).build();
+		checkQualityTimes(item, 1);
+		
+		assertEquals(1, item.quality);
+	}
+	
+	@Test
 	public void  sellInUnderZeroForBackStagePassReduceQualityToZero() {
 		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(10).setSellIn(-1).build();
 		checkQualityTimes(item, 1);
