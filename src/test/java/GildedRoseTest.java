@@ -8,6 +8,7 @@ public class GildedRoseTest {
 	private static final int MAX_QUALITY_INCREASE = 50;
 
 	private static final String AGED_BRIE = "Aged Brie";
+	private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
 	private static final int MAX_QUALITY = 50;
 
@@ -63,6 +64,22 @@ public class GildedRoseTest {
 		checkQualityTimes(item, MAX_QUALITY_INCREASE);
 		
 		assertEquals(50, item.quality);
+	}
+	
+	@Test
+	public void sellInDateContinuesToDecreaseBelowZero() {
+		Item item = new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build();
+		checkQualityTimes(item, MAX_QUALITY_INCREASE);
+		
+		assertEquals(-49, item.sellIn);
+	}
+	
+	@Test
+	public void sellInDateDoesNotChangeForSulfuras() {
+		Item item = new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(1).build();
+		checkQualityTimes(item, MAX_QUALITY_INCREASE);
+		
+		assertEquals(1, item.sellIn);
 	}
 
 	private void checkQualityTimes(Item item, int timesToCheck) {
