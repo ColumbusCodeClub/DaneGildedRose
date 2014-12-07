@@ -33,7 +33,7 @@ public class GildedRose {
 	}
 
 	void adjustQualityForItem(Item item) {
-		if (qualityChanges(item)) {
+		if (qualityDecreases(item)) {
 			if (qualityAboveZero(item)) {
 				if (notSulfuras(item)) {
 					decrementQuality(item);
@@ -75,7 +75,7 @@ public class GildedRose {
 		return item.getQuality() > 0;
 	}
 
-	private boolean qualityChanges(Item item) {
+	private boolean qualityDecreases(Item item) {
 		return (!isAgedBrie(item)) && !isBackstage(item);
 	}
 
