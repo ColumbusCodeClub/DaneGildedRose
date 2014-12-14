@@ -6,33 +6,33 @@ public class GildedRose {
 	private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 	private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 	private static final String AGED_BRIE = "Aged Brie";
-	private static List<Item> items = null;
+	private static List<UsefulItem> items = null;
 
 	public GildedRose() {
-		items = new ArrayList<Item>();
+		items = new ArrayList<UsefulItem>();
 		initItems();
 	}
 
-	public void addItem(Item item) {
+	public void addItem(UsefulItem item) {
 		items.add(item);
 	}
 
 	public void updateQuality() {
 
-		for (Item item : items) {
+		for (UsefulItem item : items) {
 			adjustQualityForItem(item);
 		}
 	}
 
-	private boolean isAgedBrie(Item item) {
-		return AGED_BRIE.equals(item.getName());
+	private boolean isAgedBrie(UsefulItem item) {
+		return AGED_BRIE.equals(item.name());
 	}
 
-	private boolean isBackstage(Item item) {
-		return BACKSTAGE_PASSES.equals(item.getName());
+	private boolean isBackstage(UsefulItem item) {
+		return BACKSTAGE_PASSES.equals(item.name());
 	}
 
-	void adjustQualityForItem(Item item) {
+	void adjustQualityForItem(UsefulItem item) {
 		if (qualityDecreases(item)) {
 			if (qualityAboveZero(item)) {
 				if (notSulfuras(item)) {
@@ -47,10 +47,10 @@ public class GildedRose {
 		}
 
 		if (notSulfuras(item)) {
-			item.setSellIn(item.getSellIn() - 1);
+			item.setSellIn(item.sellIn() - 1);
 		}
 
-		if (item.getSellIn() < 0) {
+		if (item.sellIn() < 0) {
 			if (!isAgedBrie(item)) {
 				if (!isBackstage(item)) {
 					if (qualityAboveZero(item)) {
@@ -67,46 +67,46 @@ public class GildedRose {
 		}
 	}
 
-	private boolean notSulfuras(Item item) {
-		return !SULFURAS.equals(item.getName());
+	private boolean notSulfuras(UsefulItem item) {
+		return !SULFURAS.equals(item.name());
 	}
 
-	private boolean qualityAboveZero(Item item) {
-		return item.getQuality() > 0;
+	private boolean qualityAboveZero(UsefulItem item) {
+		return item.quality() > 0;
 	}
 
-	private boolean qualityDecreases(Item item) {
+	private boolean qualityDecreases(UsefulItem item) {
 		return (!isAgedBrie(item)) && !isBackstage(item);
 	}
 
-	private void updateQualityForBackStagePass(Item item) {
+	private void updateQualityForBackStagePass(UsefulItem item) {
 		incrementQuality(item);
-		if (item.getSellIn() < 11) {
+		if (item.quality() < 11) {
 			incrementQuality(item);
 		}
 
-		if (item.getSellIn() < 6) {
+		if (item.sellIn() < 6) {
 			incrementQuality(item);
 		}
 	}
 
-	private void decrementQuality(Item item) {
-		item.setQuality(item.getQuality() - 1);
+	private void decrementQuality(UsefulItem item) {
+		item.setQuality(item.quality() - 1);
 	}
 
-	void incrementQuality(Item item) {
-		if (item.getQuality() < 50) {
-			item.setQuality(item.getQuality() + 1);
+	void incrementQuality(UsefulItem item) {
+		if (item.quality() < 50) {
+			item.setQuality(item.quality() + 1);
 		}
 	}
 
 	private void initItems() {
-		items.add(new Item("+5 Dexterity Vest", 10, 20));
-		items.add(new Item(AGED_BRIE, 2, 0));
-		items.add(new Item("Elixir of the Mongoose", 5, 7));
-		items.add(new Item(SULFURAS, 0, 80));
-		items.add(new Item(BACKSTAGE_PASSES, 15, 20));
-		items.add(new Item("Conjured Mana Cake", 3, 6));
+		items.add(new UsefulItem(new Item("+5 Dexterity Vest", 10, 20)));
+		items.add(new UsefulItem(new Item(AGED_BRIE, 2, 0)));
+		items.add(new UsefulItem(new Item("Elixir of the Mongoose", 5, 7)));
+		items.add(new UsefulItem(new Item(SULFURAS, 0, 80)));
+		items.add(new UsefulItem(new Item(BACKSTAGE_PASSES, 15, 20)));
+		items.add(new UsefulItem(new Item("Conjured Mana Cake", 3, 6)));
 	}
 
 }

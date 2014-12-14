@@ -23,4 +23,12 @@ public class UsefulItem {
 		return name;
 	}
 
+	public void setQuality(int quality) {
+		this.quality = quality;
+	}
+
+	public void setSellIn(int sellIn) {
+		this.sellIn = sellIn;
+	}
+
 }
