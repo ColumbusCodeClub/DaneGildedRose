@@ -26,8 +26,7 @@ public class GildedRoseTest {
 	public void ifQualityBelowFiftyThenAddQualityofOne() {
 		UsefulItem usefulItem = new UsefulItem(createGenericItemWithQuality(1));
 		
-		
-		underTest.incrementQuality(usefulItem);
+		usefulItem.incrementQuality();
 
 		assertEquals(2, usefulItem.quality());
 	}
@@ -36,8 +35,7 @@ public class GildedRoseTest {
 	public void ifQualityIsFiftyThenQualityDoesNotIncrement() {
 		UsefulItem usefulItem = new UsefulItem(createGenericItemWithQuality(MAX_QUALITY));
 		
-		
-		underTest.incrementQuality(usefulItem);
+		usefulItem.incrementQuality();
 
 		assertEquals(MAX_QUALITY, usefulItem.quality());
 	}

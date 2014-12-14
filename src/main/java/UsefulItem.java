@@ -1,4 +1,3 @@
-
 public class UsefulItem {
 
 	private int quality = 0;
@@ -7,8 +6,8 @@ public class UsefulItem {
 
 	public UsefulItem(Item item) {
 		this.quality = item.getQuality();
-		this.sellIn  = item.getSellIn();
-		this.name   = item.getName();
+		this.sellIn = item.getSellIn();
+		this.name = item.getName();
 	}
 
 	public int quality() {
@@ -33,6 +32,12 @@ public class UsefulItem {
 
 	public void decrementQuality() {
 		this.quality -= 1;
+	}
+
+	public void incrementQuality() {
+		if (quality < 50) {
+			this.quality += 1;
+		}
 	}
 
 }

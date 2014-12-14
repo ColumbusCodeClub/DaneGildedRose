@@ -43,7 +43,7 @@ public class GildedRose {
 			updateQualityForBackStagePass(item);
 
 		} else {
-			incrementQuality(item);
+			item.incrementQuality();
 		}
 
 		if (notSulfuras(item)) {
@@ -56,14 +56,13 @@ public class GildedRose {
 					if (qualityAboveZero(item)) {
 						if (notSulfuras(item)) {
 							item.decrementQuality();
-//							decrementQuality(item);
 						}
 					}
 				} else {
 					item.setQuality(0);
 				}
 			} else {
-				incrementQuality(item);
+				item.incrementQuality();
 			}
 		}
 	}
@@ -81,19 +80,13 @@ public class GildedRose {
 	}
 
 	private void updateQualityForBackStagePass(UsefulItem item) {
-		incrementQuality(item);
+		item.incrementQuality();
 		if (item.quality() < 11) {
-			incrementQuality(item);
+			item.incrementQuality();
 		}
 
 		if (item.sellIn() < 6) {
-			incrementQuality(item);
-		}
-	}
-
-	void incrementQuality(UsefulItem item) {
-		if (item.quality() < 50) {
-			item.setQuality(item.quality() + 1);
+			item.incrementQuality();
 		}
 	}
 
