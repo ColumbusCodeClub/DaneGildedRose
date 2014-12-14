@@ -31,4 +31,8 @@ public class UsefulItem {
 		this.sellIn = sellIn;
 	}
 
+	public void decrementQuality() {
+		this.quality -= 1;
+	}
+
 }
