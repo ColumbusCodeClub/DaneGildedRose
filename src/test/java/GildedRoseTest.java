@@ -24,8 +24,7 @@ public class GildedRoseTest {
 
 	@Test
 	public void ifQualityBelowFiftyThenAddQualityofOne() {
-		Item item = createGenericItemWithQuality(1);
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(createGenericItemWithQuality(1));
 		
 		
 		underTest.incrementQuality(usefulItem);
@@ -35,8 +34,7 @@ public class GildedRoseTest {
 
 	@Test
 	public void ifQualityIsFiftyThenQualityDoesNotIncrement() {
-		Item item = createGenericItemWithQuality(MAX_QUALITY);
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(createGenericItemWithQuality(MAX_QUALITY));
 		
 		
 		underTest.incrementQuality(usefulItem);
@@ -46,8 +44,7 @@ public class GildedRoseTest {
 
 	@Test
 	public void updateQualityForGeneralItem() {
-		Item item = createGenericItemWithQuality(MAX_QUALITY);
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(createGenericItemWithQuality(MAX_QUALITY));
 
 		underTest.adjustQualityForItem(usefulItem);
 
@@ -56,19 +53,18 @@ public class GildedRoseTest {
 
 	@Test
 	public void qualityNeverNegative() {
-		Item item = new ItemBuilder().setName(genericItemName).setQuality(0)
-				.setSellIn(1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(genericItemName).setQuality(0)
+				.setSellIn(1).build());
 
 		underTest.adjustQualityForItem(usefulItem);
 
-		assertEquals(0, item.quality);
+		assertEquals(0, new ItemBuilder().setName(genericItemName).setQuality(0)
+				.setSellIn(1).build().quality);
 	}
 	
 	@Test
 	public void qualityForBrieIncreasesUntilFifty() {
-		Item item = new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
 		
 		assertEquals(50, usefulItem.quality());
@@ -76,8 +72,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void sellInDateContinuesToDecreaseBelowZero() {
-		Item item = new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
 		
 		assertEquals(-49, usefulItem.sellIn());
@@ -85,8 +80,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void sellInDateDoesNotChangeForSulfuras() {
-		Item item = new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
 		
 		assertEquals(1, usefulItem.sellIn());
@@ -94,8 +88,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void qualityForBackStagePassesIncreaseByThreeIfSellInUnderSix() {
-		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(4, usefulItem.quality());
@@ -103,8 +96,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void qualityForBackStagePassesIncreaseByTwoIfSellinOver11() {
-		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(12).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(12).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(3, usefulItem.quality());
@@ -112,8 +104,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void  sellInUnderZeroForGeneralItemReducesQuality() {
-		Item item = new ItemBuilder().setName(genericItemName).setQuality(3).setSellIn(-1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(genericItemName).setQuality(3).setSellIn(-1).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(1, usefulItem.quality());
@@ -121,8 +112,7 @@ public class GildedRoseTest {
 
 	@Test
 	public void  sellInUnderZeroForGeneralItemWithQualityAlreadyZero() {
-		Item item = new ItemBuilder().setName(genericItemName).setQuality(0).setSellIn(-1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(genericItemName).setQuality(0).setSellIn(-1).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(0, usefulItem.quality());
@@ -130,8 +120,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void  sellInUnderZeroForSulfarsDoesNotDecrementQuality() {
-		Item item = new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(-1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(-1).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(1, usefulItem.quality());
@@ -139,8 +128,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void  sellInUnderZeroForBackStagePassReduceQualityToZero() {
-		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(10).setSellIn(-1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(10).setSellIn(-1).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(0, usefulItem.quality());
@@ -148,10 +136,8 @@ public class GildedRoseTest {
 	
 	@Test
 	public void shouldTakeListOfItemsAndCallAdjustQualityForAll() {
-		Item item = new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(10).setSellIn(-1).build();
-		Item item2 = new ItemBuilder().setName(genericItemName).setQuality(3).setSellIn(-1).build();
-		UsefulItem usefulItem = new UsefulItem(item);
-		UsefulItem usefulItem2 = new UsefulItem(item2);
+		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(10).setSellIn(-1).build());
+		UsefulItem usefulItem2 = new UsefulItem(new ItemBuilder().setName(genericItemName).setQuality(3).setSellIn(-1).build());
 		
 		underTest.addItem(usefulItem);
 		underTest.addItem(usefulItem2);
@@ -163,9 +149,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void usefulItemShouldTakeAndReturnPartsOfIt() {
-		Item item = new Item("Some Item", 1, 2);
-		
-		UsefulItem useful = new UsefulItem(item);
+		UsefulItem useful = new UsefulItem(new Item("Some Item", 1, 2));
 		assertEquals(2, useful.quality());
 		assertEquals(1, useful.sellIn());
 		assertEquals("Some Item", useful.name());
