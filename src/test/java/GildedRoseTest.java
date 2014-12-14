@@ -143,6 +143,15 @@ public class GildedRoseTest {
 		assertEquals(0, item.quality);
 		assertEquals(1, item2.quality);
 	}
+	
+	@Test
+	public void usefulItemShouldTakeAndReturnPartsOfIt() {
+		Item item = new Item("Some Item", 1, 2);
+		
+		UsefulItem useful = new UsefulItem(item);
+		assertEquals(2, useful.quality());
+		assertEquals(1, useful.sellIn());
+	}
 
 	private void checkQualityTimes(Item item, int timesToCheck) {
 		for(int qualityChecks = 1; qualityChecks <=timesToCheck; qualityChecks++) {
