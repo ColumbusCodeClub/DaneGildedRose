@@ -3,10 +3,12 @@ public class UsefulItem {
 
 	private int quality = 0;
 	private int sellIn = 0;
+	private String name = "";
 
 	public UsefulItem(Item item) {
 		this.quality = item.getQuality();
 		this.sellIn  = item.getSellIn();
+		this.name   = item.getName();
 	}
 
 	public int quality() {
@@ -15,6 +17,10 @@ public class UsefulItem {
 
 	public int sellIn() {
 		return sellIn;
+	}
+
+	public String name() {
+		return name;
 	}
 
 }

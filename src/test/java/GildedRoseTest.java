@@ -151,6 +151,7 @@ public class GildedRoseTest {
 		UsefulItem useful = new UsefulItem(item);
 		assertEquals(2, useful.quality());
 		assertEquals(1, useful.sellIn());
+		assertEquals("Some Item", useful.name());
 	}
 
 	private void checkQualityTimes(Item item, int timesToCheck) {
