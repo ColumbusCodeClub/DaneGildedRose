@@ -44,23 +44,8 @@ public class GildedRose {
 		}
 
 		item.decreaseSellinDate();
-
-		if (item.sellIn() < 0) {
-			if (!isAgedBrie(item)) {
-				if (!isBackstage(item)) {
-					if (qualityAboveZero(item)) {
-						item.decrementQuality();
-					}
-				} else {
-					item.setQuality(0);
-				}
-			} else {
-				item.incrementQuality();
-			}
-		}
+		item.decrementQualityBasedOnSellinDate();
 	}
-
-
 
 	private boolean notSulfuras(UsefulItem item) {
 		return !SULFURAS.equals(item.name());

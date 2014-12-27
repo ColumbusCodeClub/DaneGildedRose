@@ -43,4 +43,17 @@ public class UsefulItem {
 		}
 	}
 
+	public void decrementQualityBasedOnSellinDate() {
+		if (sellIn() < 0) {
+			if (qualityAboveZero()) {
+				decrementQuality();
+			}
+		}
+
+	}
+	
+	private boolean qualityAboveZero() {
+		return quality() > 0;
+	}
+
 }
