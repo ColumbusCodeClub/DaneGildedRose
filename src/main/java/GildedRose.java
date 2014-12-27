@@ -43,9 +43,7 @@ public class GildedRose {
 			item.incrementQuality();
 		}
 
-		if (notSulfuras(item)) {
-			item.setSellIn(item.sellIn() - 1);
-		}
+		item.decreaseSellinDate();
 
 		if (item.sellIn() < 0) {
 			if (!isAgedBrie(item)) {
@@ -61,6 +59,8 @@ public class GildedRose {
 			}
 		}
 	}
+
+
 
 	private boolean notSulfuras(UsefulItem item) {
 		return !SULFURAS.equals(item.name());

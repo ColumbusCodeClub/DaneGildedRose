@@ -21,6 +21,10 @@ public class UsefulItem {
 		return name;
 	}
 
+	public void decreaseSellinDate() {
+		setSellIn(sellIn() - 1);
+	}
+
 	public void setQuality(int quality) {
 		this.quality = quality;
 	}
