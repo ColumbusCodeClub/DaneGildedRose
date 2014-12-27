@@ -62,7 +62,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void qualityForBrieIncreasesUntilFifty() {
-		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build());
+		UsefulItem usefulItem = new AgedBrie(new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
 		
 		assertEquals(50, usefulItem.quality());
@@ -70,7 +70,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void sellInDateContinuesToDecreaseBelowZero() {
-		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build());
+		UsefulItem usefulItem = new AgedBrie(new ItemBuilder().setName(AGED_BRIE).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
 		
 		assertEquals(-49, usefulItem.sellIn());
@@ -78,7 +78,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void sellInDateDoesNotChangeForSulfuras() {
-		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(1).build());
+		UsefulItem usefulItem = new Sulfuras(new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
 		
 		assertEquals(1, usefulItem.sellIn());
@@ -118,7 +118,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void  sellInUnderZeroForSulfarsDoesNotDecrementQuality() {
-		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(-1).build());
+		UsefulItem usefulItem = new Sulfuras(new ItemBuilder().setName(SULFURAS).setQuality(1).setSellIn(-1).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(1, usefulItem.quality());

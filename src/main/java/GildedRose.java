@@ -51,9 +51,7 @@ public class GildedRose {
 			if (!isAgedBrie(item)) {
 				if (!isBackstage(item)) {
 					if (qualityAboveZero(item)) {
-						if (notSulfuras(item)) {
 							item.decrementQuality();
-						}
 					}
 				} else {
 					item.setQuality(0);
