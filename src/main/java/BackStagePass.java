@@ -24,7 +24,7 @@ public class BackStagePass extends UsefulItem {
 	}
 
 	@Override
-	public void adjustQualityForItem() {
+	public void adjustQuality() {
 		incrementQuality();
 		decreaseSellinDate();
 		decrementQualityBasedOnSellinDate();

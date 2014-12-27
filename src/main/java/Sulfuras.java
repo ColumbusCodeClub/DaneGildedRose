@@ -13,7 +13,7 @@ public class Sulfuras extends UsefulItem {
 	}
 
 	@Override
-	public void adjustQualityForItem() {
+	public void adjustQuality() {
 		decreaseSellinDate();
 		decrementQualityBasedOnSellinDate();
 	}

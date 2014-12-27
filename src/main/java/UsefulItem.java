@@ -16,16 +16,12 @@ public class UsefulItem {
 		return sellIn;
 	}
 
-	void decreaseSellinDate() {
-		setSellIn(sellIn() - 1);
+	protected void decreaseSellinDate() {
+		this.sellIn = sellIn - 1;
 	}
 
-	void setQuality(int quality) {
+	protected void setQuality(int quality) {
 		this.quality = quality;
-	}
-
-	private void setSellIn(int sellIn) {
-		this.sellIn = sellIn;
 	}
 
 	void decrementQuality() {
@@ -33,16 +29,13 @@ public class UsefulItem {
 	}
 
 	public void incrementQuality() {
-		if (quality < 50) {
+		if (belowMaxQuality()) {
 			this.quality += 1;
 		}
 	}
 
-	void adjustQualityForItem() {
-		if (qualityAboveZero()) {
-			decrementQuality();
-		}
-
+	protected void adjustQuality() {
+		decrementQualityAboveZero();
 		decreaseSellinDate();
 		decrementQualityBasedOnSellinDate();
 	}
@@ -51,13 +44,21 @@ public class UsefulItem {
 		return quality() > 0;
 	}
 
-	public void decrementQualityBasedOnSellinDate() {
+	protected void decrementQualityBasedOnSellinDate() {
 		if (sellIn() < 0) {
-			if (qualityAboveZero()) {
-				decrementQuality();
-			}
+			decrementQualityAboveZero();
 		}
 
+	}
+	
+	private boolean belowMaxQuality() {
+		return quality < 50;
+	}
+
+	private void decrementQualityAboveZero() {
+		if (qualityAboveZero()) {
+			decrementQuality();
+		}
 	}
 
 }
