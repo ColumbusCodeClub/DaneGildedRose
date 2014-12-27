@@ -2,34 +2,33 @@ public class UsefulItem {
 
 	private int quality = 0;
 	private int sellIn = 0;
-	private String name = "name";
 
 	public UsefulItem(Item item) {
 		this.quality = item.getQuality();
 		this.sellIn = item.getSellIn();
 	}
 
-	public int quality() {
+	int quality() {
 		return quality;
 	}
 
-	public int sellIn() {
+	int sellIn() {
 		return sellIn;
 	}
 
-	public void decreaseSellinDate() {
+	void decreaseSellinDate() {
 		setSellIn(sellIn() - 1);
 	}
 
-	public void setQuality(int quality) {
+	void setQuality(int quality) {
 		this.quality = quality;
 	}
 
-	public void setSellIn(int sellIn) {
+	private void setSellIn(int sellIn) {
 		this.sellIn = sellIn;
 	}
 
-	public void decrementQuality() {
+	void decrementQuality() {
 		this.quality -= 1;
 	}
 
@@ -39,7 +38,7 @@ public class UsefulItem {
 		}
 	}
 
-	public void adjustQualityForItem() {
+	void adjustQualityForItem() {
 		if (qualityAboveZero()) {
 			decrementQuality();
 		}

@@ -5,7 +5,7 @@ public class Sulfuras extends UsefulItem {
 	}
 
 	@Override
-	public void decrementQuality() {
+	void decrementQuality() {
 	}
 
 	@Override

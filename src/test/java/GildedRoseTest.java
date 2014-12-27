@@ -5,17 +5,8 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 
-	private static final int MAX_QUALITY_INCREASE = 50;
-
-	private static final String AGED_BRIE = "Aged Brie";
-	private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-	private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-
 	private static final int MAX_QUALITY = 50;
-
 	private GildedRose underTest;
-
-	private String genericItemName = "name";
 	
 	@Before
 	public void setup() {
@@ -54,7 +45,7 @@ public class GildedRoseTest {
 		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setQuality(0)
 				.setSellIn(1).build());
 
-		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
+		checkQualityTimes(usefulItem, MAX_QUALITY);
 
 		assertEquals(0, new ItemBuilder().setQuality(0)
 				.setSellIn(1).build().quality);
@@ -63,7 +54,7 @@ public class GildedRoseTest {
 	@Test
 	public void qualityForBrieIncreasesUntilFifty() {
 		UsefulItem usefulItem = new AgedBrie(new ItemBuilder().setQuality(1).setSellIn(1).build());
-		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
+		checkQualityTimes(usefulItem, MAX_QUALITY);
 		
 		assertEquals(50, usefulItem.quality());
 	}
@@ -71,7 +62,7 @@ public class GildedRoseTest {
 	@Test
 	public void sellInDateContinuesToDecreaseBelowZero() {
 		UsefulItem usefulItem = new AgedBrie(new ItemBuilder().setQuality(1).setSellIn(1).build());
-		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
+		checkQualityTimes(usefulItem, MAX_QUALITY);
 		
 		assertEquals(-49, usefulItem.sellIn());
 	}
@@ -79,7 +70,7 @@ public class GildedRoseTest {
 	@Test
 	public void sellInDateDoesNotChangeForSulfuras() {
 		UsefulItem usefulItem = new Sulfuras(new ItemBuilder().setQuality(1).setSellIn(1).build());
-		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
+		checkQualityTimes(usefulItem, MAX_QUALITY);
 		
 		assertEquals(1, usefulItem.sellIn());
 	}
