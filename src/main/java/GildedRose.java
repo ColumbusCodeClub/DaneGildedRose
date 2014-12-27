@@ -39,9 +39,6 @@ public class GildedRose {
 					item.decrementQuality();
 				}
 			}
-		} else if (isBackstage(item)) {
-			updateQualityForBackStagePass(item);
-
 		} else {
 			item.incrementQuality();
 		}
@@ -77,17 +74,6 @@ public class GildedRose {
 
 	private boolean qualityDecreases(UsefulItem item) {
 		return (!isAgedBrie(item)) && !isBackstage(item);
-	}
-
-	private void updateQualityForBackStagePass(UsefulItem item) {
-		item.incrementQuality();
-		if (item.quality() < 11) {
-			item.incrementQuality();
-		}
-
-		if (item.sellIn() < 6) {
-			item.incrementQuality();
-		}
 	}
 
 	private void initItems() {

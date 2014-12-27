@@ -86,7 +86,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void qualityForBackStagePassesIncreaseByThreeIfSellInUnderSix() {
-		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(1).build());
+		UsefulItem usefulItem = new BackStagePass(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(1).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(4, usefulItem.quality());
@@ -94,7 +94,7 @@ public class GildedRoseTest {
 	
 	@Test
 	public void qualityForBackStagePassesIncreaseByTwoIfSellinOver11() {
-		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(12).build());
+		UsefulItem usefulItem = new BackStagePass(new ItemBuilder().setName(BACKSTAGE_PASSES).setQuality(1).setSellIn(12).build());
 		checkQualityTimes(usefulItem, 1);
 		
 		assertEquals(3, usefulItem.quality());
