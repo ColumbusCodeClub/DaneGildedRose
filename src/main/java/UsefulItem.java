@@ -17,10 +17,6 @@ public class UsefulItem {
 		return sellIn;
 	}
 
-	public String name() {
-		return name;
-	}
-
 	public void decreaseSellinDate() {
 		setSellIn(sellIn() - 1);
 	}
