@@ -23,10 +23,6 @@ public class GildedRose {
 		}
 	}
 
-	public void adjustQualityForItem(UsefulItem item) {
-		item.adjustQualityForItem();
-	}
-
 	private void initItems() {
 		items.add(new UsefulItem(new Item("+5 Dexterity Vest", 10, 20)));
 		items.add(new UsefulItem(new Item(AGED_BRIE, 2, 0)));

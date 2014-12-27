@@ -44,7 +44,7 @@ public class GildedRoseTest {
 	public void updateQualityForGeneralItem() {
 		UsefulItem usefulItem = new UsefulItem(createGenericItemWithQuality(MAX_QUALITY));
 
-		underTest.adjustQualityForItem(usefulItem);
+		checkQualityTimes(usefulItem, 1);
 
 		assertEquals(49, usefulItem.quality());
 	}
@@ -54,7 +54,7 @@ public class GildedRoseTest {
 		UsefulItem usefulItem = new UsefulItem(new ItemBuilder().setQuality(0)
 				.setSellIn(1).build());
 
-		underTest.adjustQualityForItem(usefulItem);
+		checkQualityTimes(usefulItem, MAX_QUALITY_INCREASE);
 
 		assertEquals(0, new ItemBuilder().setQuality(0)
 				.setSellIn(1).build().quality);
@@ -153,8 +153,9 @@ public class GildedRoseTest {
 	}
 
 	private void checkQualityTimes(UsefulItem item, int timesToCheck) {
+		underTest.addItem(item);
 		for(int qualityChecks = 1; qualityChecks <=timesToCheck; qualityChecks++) {
-			underTest.adjustQualityForItem(item);
+			underTest.updateQuality();
 		}
 	}
 	
