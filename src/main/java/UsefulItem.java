@@ -43,6 +43,19 @@ public class UsefulItem {
 		}
 	}
 
+	public void adjustQualityForItem() {
+		if (qualityAboveZero()) {
+			decrementQuality();
+		}
+
+		decreaseSellinDate();
+		decrementQualityBasedOnSellinDate();
+	}
+
+	protected boolean qualityAboveZero() {
+		return quality() > 0;
+	}
+
 	public void decrementQualityBasedOnSellinDate() {
 		if (sellIn() < 0) {
 			if (qualityAboveZero()) {
@@ -50,10 +63,6 @@ public class UsefulItem {
 			}
 		}
 
-	}
-	
-	private boolean qualityAboveZero() {
-		return quality() > 0;
 	}
 
 }

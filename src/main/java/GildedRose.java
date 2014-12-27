@@ -18,45 +18,13 @@ public class GildedRose {
 	}
 
 	public void updateQuality() {
-
 		for (UsefulItem item : items) {
-			adjustQualityForItem(item);
+			item.adjustQualityForItem();
 		}
 	}
 
-	private boolean isAgedBrie(UsefulItem item) {
-		return AGED_BRIE.equals(item.name());
-	}
-
-	private boolean isBackstage(UsefulItem item) {
-		return BACKSTAGE_PASSES.equals(item.name());
-	}
-
-	void adjustQualityForItem(UsefulItem item) {
-		if (qualityDecreases(item)) {
-			if (qualityAboveZero(item)) {
-				if (notSulfuras(item)) {
-					item.decrementQuality();
-				}
-			}
-		} else {
-			item.incrementQuality();
-		}
-
-		item.decreaseSellinDate();
-		item.decrementQualityBasedOnSellinDate();
-	}
-
-	private boolean notSulfuras(UsefulItem item) {
-		return !SULFURAS.equals(item.name());
-	}
-
-	private boolean qualityAboveZero(UsefulItem item) {
-		return item.quality() > 0;
-	}
-
-	private boolean qualityDecreases(UsefulItem item) {
-		return (!isAgedBrie(item)) && !isBackstage(item);
+	public void adjustQualityForItem(UsefulItem item) {
+		item.adjustQualityForItem();
 	}
 
 	private void initItems() {

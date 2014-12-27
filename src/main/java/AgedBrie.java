@@ -20,4 +20,11 @@ public class AgedBrie extends UsefulItem {
 		}
 	}
 
+	@Override
+	public void adjustQualityForItem() {
+		incrementQuality();
+		decreaseSellinDate();
+		decrementQualityBasedOnSellinDate();
+	}
+
 }

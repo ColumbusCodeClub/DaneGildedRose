@@ -30,4 +30,11 @@ public class BackStagePass extends UsefulItem {
 		}
 	}
 
+	@Override
+	public void adjustQualityForItem() {
+		incrementQuality();
+		decreaseSellinDate();
+		decrementQualityBasedOnSellinDate();
+	}
+
 }
