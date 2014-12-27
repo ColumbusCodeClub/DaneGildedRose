@@ -2,12 +2,11 @@ public class UsefulItem {
 
 	private int quality = 0;
 	private int sellIn = 0;
-	private String name = "";
+	private String name = "name";
 
 	public UsefulItem(Item item) {
 		this.quality = item.getQuality();
 		this.sellIn = item.getSellIn();
-		this.name = item.getName();
 	}
 
 	public int quality() {

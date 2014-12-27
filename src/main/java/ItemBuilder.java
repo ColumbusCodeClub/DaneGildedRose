@@ -5,8 +5,8 @@ public  class ItemBuilder {
 	public ItemBuilder() {
 		item = new Item();
 	}
-	public ItemBuilder setName(String name) {
-		item.setName(name);
+	public ItemBuilder setName() {
+		item.setName("does not matter now");
 		return this;
 	}
 	
