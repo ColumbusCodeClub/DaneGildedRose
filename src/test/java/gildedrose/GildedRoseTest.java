@@ -1,4 +1,12 @@
+package gildedrose;
 import static org.junit.Assert.assertEquals;
+import gildedrose.AgedBrie;
+import gildedrose.BackStagePass;
+import gildedrose.GildedRose;
+import gildedrose.Item;
+import gildedrose.ItemBuilder;
+import gildedrose.Sulfuras;
+import gildedrose.UsefulItem;
 
 import org.junit.Before;
 import org.junit.Test;

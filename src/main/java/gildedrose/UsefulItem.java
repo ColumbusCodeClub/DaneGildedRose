@@ -1,3 +1,4 @@
+package gildedrose;
 public class UsefulItem {
 
 	private int quality = 0;

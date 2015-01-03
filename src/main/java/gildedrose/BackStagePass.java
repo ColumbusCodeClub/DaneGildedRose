@@ -1,3 +1,4 @@
+package gildedrose;
 public class BackStagePass extends UsefulItem {
 
 	public BackStagePass(Item item) {

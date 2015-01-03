@@ -1,3 +1,4 @@
+package gildedrose;
 public class Sulfuras extends UsefulItem {
 
 	public Sulfuras(Item item) {

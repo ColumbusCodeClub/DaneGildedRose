@@ -1,3 +1,4 @@
+package gildedrose;
 public  class ItemBuilder {
 	
 	Item item;
