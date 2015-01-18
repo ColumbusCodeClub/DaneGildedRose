@@ -22,14 +22,14 @@ public class GildedRose {
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
 		items.add(new Item("Conjured Mana Cake", 3, 6));
 
-		updateQuality();
+		//updateQuality();
 	}
 	
-	public static void addItem(Item item) {
+	public void addItem(Item item) {
 		items.add(item);
 	}
 
-	public static void updateQuality() {
+	public void updateQuality() {
 		for (int i = 0; i < items.size(); i++) {
 			updateQualityOnly(i);
 			updateSellInDate(i);
@@ -66,7 +66,7 @@ public class GildedRose {
 			updateAgedBrieQuality(i);
 		} else {
 			if (isBackStagePass(i)) {
-				reduceQualityByOne(i);
+				reduceQualityByToZero(i);
 			} else {
 				handleItemsThatDecreaseInQuality(i);
 			}
@@ -116,6 +116,11 @@ public class GildedRose {
 	}
 
 	private static void reduceQualityByOne(int i) {
+		items.get(i).setQuality(
+				items.get(i).getQuality() - 1);
+	}
+	
+	private static void reduceQualityByToZero(int i) {
 		items.get(i).setQuality(
 				items.get(i).getQuality() - items.get(i).getQuality());
 	}
