@@ -45,5 +45,23 @@ public class GildedRoseTest {
 		
 		assertEquals(4, item.getQuality());
 	}
+	
+	@Test
+	public void cakeDecreasesInQualityByTwoWhenPastSellInDate() {
+		Item item = new Item("Conjured Mana Cake", 0, 5);
+		
+		timePasses(item);
+		
+		assertEquals(3, item.getQuality());
+	}
+	
+	@Test
+	public void BackStagePassDecreasesInQualityToZeroWhenPastSellInDate() {
+		Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5);
+		
+		timePasses(item);
+		
+		assertEquals(0, item.getQuality());
+	}
 
 }
