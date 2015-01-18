@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GildedRose {
 
-	private static List<Item> items = null;
+	private static List<Item> items = new ArrayList<Item>();
 
 	/**
 	 * @param args
@@ -23,6 +23,10 @@ public class GildedRose {
 		items.add(new Item("Conjured Mana Cake", 3, 6));
 
 		updateQuality();
+	}
+	
+	public static void addItem(Item item) {
+		items.add(item);
 	}
 
 	public static void updateQuality() {
